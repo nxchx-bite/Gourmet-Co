@@ -11,5 +11,151 @@
 
 <body>
 
-    
+<!-- NAVBAR -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="admin.html">Gourmet & Co. - Administración</a>
+      <a href="index.html" class="btn btn-outline-light">Volver a la tienda</a>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+
+    <div class="mb-4">
+      <h1 class="h2">Panel administrativo</h1>
+      <p class="text-muted mb-0">
+        Los cambios realizados aquí son temporales y se borran al refrescar la página.
+      </p>
+    </div>
+
+    <!-- BOTONES DE SECCION -->
+    <div class="mb-4">
+      <button class="btn btn-dark me-2" onclick="mostrarSeccion('productos')">
+        Productos
+      </button>
+
+      <button class="btn btn-outline-dark" onclick="mostrarSeccion('usuarios')">
+        Usuarios
+      </button>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <section id="seccionProductos">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h4 mb-0">Productos</h2>
+
+        <button class="btn btn-success" onclick="abrirNuevoProducto()">+ Agregar producto</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Categoría</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody id="tablaProductos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- USUARIOS -->
+    <section id="seccionUsuarios" class="d-none">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="h4 mb-0">Usuarios</h2>
+
+        <button class="btn btn-success" onclick="abrirNuevoUsuario()">
+          + Agregar usuario
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>RUN</th>
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Rol</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody id="tablaUsuarios"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL PRODUCTO -->
+  <div class="modal fade" id="modalProducto" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloProducto">Nuevo producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <form id="formProducto">
+          <div class="modal-body">
+
+            <input type="hidden" id="indiceProducto">
+
+            <div class="mb-3">
+              <label for="codigoProducto" class="form-label">Código</label>
+              <input type="text" id="codigoProducto" class="form-control" minlength="3" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="nombreProducto" class="form-label">Nombre</label>
+              <input type="text" id="nombreProducto" class="form-control" maxlength="100" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="categoriaProducto" class="form-label">Categoría</label>
+              <select id="categoriaProducto" class="form-select" required>
+                <option value="">Seleccione...</option>
+                <option>Café & Té</option>
+                <option>Chocolates & Dulces</option>
+                <option>Quesos & Charcutería</option>
+                <option>Vinos & Licores</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="precioProducto" class="form-label">Precio</label>
+              <input type="number" id="precioProducto" class="form-control" min="0" step="0.01" required>
+              <div class="form-text">Si el precio es 0, se mostrará como FREE.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="stockProducto" class="form-label">Stock</label>
+              <input type="number" id="stockProducto" class="form-control" min="0" step="1" required>
+            </div>
+
+            <div id="errorProducto" class="text-danger small"></div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-dark">Guardar</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
 </body>
+
+</html>
